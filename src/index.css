@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0B0B0D;
+  --surface: #151518;
+  --surface2: #1C1C21;
+  --text: #F2F2F2;
+  --muted: #9A9AA3;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #C8102E;
+  --success: #34C759;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #F4F4F6;
+  --surface: #FFFFFF;
+  --surface2: #ECECF0;
+  --text: #0B0B0D;
+  --muted: #6B6B75;
+  --border: rgba(0, 0, 0, 0.08);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, "Segoe UI", Roboto, sans-serif;
+  --radius-card: 16px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* State-change motion only */
+.check-pop {
+  animation: check-pop 220ms cubic-bezier(.2,.8,.2,1);
+}
+@keyframes check-pop {
+  0% { transform: scale(0.92); opacity: .6; }
+  60% { transform: scale(1.03); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.fade-in {
+  animation: fade-in 180ms ease-out;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.toast-in {
+  animation: toast-in 260ms cubic-bezier(.2,.8,.2,1);
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-12px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+input, textarea, select, button {
+  font: inherit;
+  color: inherit;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; }
+}
