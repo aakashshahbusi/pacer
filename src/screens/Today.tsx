@@ -5,6 +5,8 @@ import { useToday } from '../lib/today'
 import { diffDays, formatLong } from '../lib/dates'
 import { nextRace, shortRaceName } from '../lib/selectors'
 import { useStore } from '../store/store'
+import { HabitRow } from '../components/HabitRow'
+import { computeStreak, dayCounts, hasSkip, isDayClosed } from '../lib/streak'
 import { SessionCard } from '../components/SessionCard'
 import { PaceLine } from '../components/PaceLine'
 import { LiftBody, type LiftBodyHandle } from '../components/LiftBody'
@@ -42,7 +44,7 @@ function relativeLabel(selected: string, today: string): string {
 
 export default function Today({ route }: { route: Route }) {
   const today = useToday()
-  const { settings } = useStore()
+  const { settings, results, habits } = useStore()
   const initial = route.sub && ISO.test(route.sub) && getDay(route.sub) ? route.sub : clampToPlan(today)
   const [date, setDate] = useState(initial)
 
@@ -78,6 +80,10 @@ export default function Today({ route }: { route: Route }) {
     }
   }
 
+  const streak = useMemo(() => computeStreak(today, results, habits), [today, results, habits])
+  const closed = isDayClosed(day, results, habits)
+  const counts = dayCounts(day, results, habits)
+  const skipped = hasSkip(day, results)
   const visibleSessions = day.sessions.filter((s) => !(s.optional && settings.hiddenOptional.includes(s.id)))
   const hiddenCount = day.sessions.length - visibleSessions.length
   const isToday = date === clampToPlan(today)
@@ -103,6 +109,11 @@ export default function Today({ route }: { route: Route }) {
             <span className="text-text font-semibold">{day.phase_name}</span> · {day.week_label}
           </span>
           {day.deload && <span className="rounded-full bg-accent/15 text-accent px-3 py-1 text-[13px] font-semibold">Deload</span>}
+          {streak.current > 0 && (
+            <span className="rounded-full bg-success/15 text-success px-3 py-1 text-[13px] font-semibold tabular">
+              {streak.current}-day streak
+            </span>
+          )}
           {race && (
             <span className="rounded-full bg-accent text-white px-3 py-1 text-[13px] font-semibold tabular">
               {race.days === 0 ? `${shortRaceName(race.race)} today` : `${shortRaceName(race.race)} in ${race.days} day${race.days === 1 ? '' : 's'}`}
@@ -121,6 +132,33 @@ export default function Today({ route }: { route: Route }) {
       {/* Easter egg line (pinned only for now; rotation arrives in step 10) */}
       {day.egg && <p className="text-muted text-[15px] italic text-center px-2 mb-4">{day.egg}</p>}
 
+      {isToday && streak.brokeYesterday > 0 && (
+        <div className="mb-4 rounded-[16px] border border-border bg-surface px-4 py-3 text-[15px]">
+          <span className="font-semibold">{copy.streak_broken}</span>
+          <span className="text-muted"> Longest so far: {streak.longest} days.</span>
+        </div>
+      )}
+
+      {closed && (
+        <div className={`mb-4 rounded-[16px] border px-4 py-3 fade-in ${counts ? 'border-success/40 bg-success/10' : 'border-border bg-surface'}`}>
+          <div className="flex items-center gap-2 font-bold text-[17px]">
+            <span className={`inline-flex h-7 w-7 items-center justify-center rounded-full ${counts ? 'bg-success text-black' : 'bg-surface2 text-muted'}`}>
+              <Icon name="check" size={16} />
+            </span>
+            {copy.all_done}
+          </div>
+          <p className="mt-1 text-[14px] text-muted">
+            {counts
+              ? isToday
+                ? `Counts toward the streak. It ticks over at midnight${streak.current ? ` → ${streak.current + 1}` : ''}.`
+                : 'This day counts toward the streak.'
+              : skipped
+                ? 'A skipped session means this day won\'t count toward the streak.'
+                : 'This day won\'t count toward the streak.'}
+          </p>
+        </div>
+      )}
+
       {/* Sessions */}
       <div className="space-y-3">
         {visibleSessions.map((s) => (
@@ -138,6 +176,8 @@ export default function Today({ route }: { route: Route }) {
           </p>
         )}
       </div>
+
+      <HabitRow day={day} />
 
       {/* Notes */}
       {day.notes.length > 0 && (
