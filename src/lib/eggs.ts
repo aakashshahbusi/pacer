@@ -82,7 +82,11 @@ export function eggFor(day: PlanDay, ctx: EggContext): EggLine | null {
 
   const pool = dominantPool(day)
   if (pool === 'india') return { text: copy.india, kind: 'india' }
-  if (pool === 'race') return { text: copy.race_day, kind: 'race' }
+  if (pool === 'race') {
+    const race = day.sessions.find((x) => x.kind === 'race')
+    const details = race?.details ?? []
+    return details.length ? { text: pick(details, day.date), kind: 'race' } : { text: copy.race_day, kind: 'race' }
+  }
 
   const now = ctx.now ?? new Date()
   if (day.date === ctx.today && now.getHours() < 10 && hashString(`${day.date}|morning`) % 100 < 30) {

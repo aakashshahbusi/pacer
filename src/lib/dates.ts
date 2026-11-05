@@ -84,9 +84,20 @@ export function fmtClock(totalSec: number, forceHours = false): string {
   return `${m}:${pad(sec)}`
 }
 
-/** "mm:ss" or "h:mm:ss" → seconds, or null when unparseable. */
+/**
+ * "mm:ss" or "h:mm:ss" → seconds, or null when unparseable.
+ * Digits-only input is accepted too (the iOS number pad has no colon): "2200" → 22:00, "20500" → 2:05:00.
+ */
 export function parseClock(text: string): number | null {
-  const parts = text.trim().split(':').map((p) => p.trim())
+  const t = text.trim()
+  if (/^\d{3,6}$/.test(t)) {
+    const sec = Number(t.slice(-2))
+    const min = Number(t.slice(-4, -2))
+    const hr = t.length > 4 ? Number(t.slice(0, -4)) : 0
+    if (sec >= 60 || min >= 60) return null
+    return hr * 3600 + min * 60 + sec
+  }
+  const parts = t.split(':').map((p) => p.trim())
   if (parts.length < 2 || parts.length > 3 || parts.some((p) => p === '' || !/^\d+$/.test(p))) return null
   const nums = parts.map(Number)
   if (nums.length === 2) return nums[0] * 60 + nums[1]

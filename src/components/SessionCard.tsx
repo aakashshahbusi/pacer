@@ -35,7 +35,7 @@ export function Details({ items, defaultOpen = false }: { items: string[]; defau
       {open && (
         <ul className="mt-2 space-y-2 fade-in">
           {items.map((t, i) => (
-            <li key={i} className="flex gap-2 text-[15px] leading-snug">
+            <li key={i} className="flex gap-2 text-[16px] leading-snug">
               <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-muted/70" />
               <span>{t}</span>
             </li>
@@ -191,7 +191,7 @@ export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }
         <>
           <StatusLine r={r} session={session} onUndo={() => clearResult(day.date, session.id)} />
           {r.status !== 'skipped' && session.pace_key === 'long' && longWords && (
-            <p className="mt-2 text-[14px] text-muted fade-in">{longWords.text} <span>— {longWords.source}</span></p>
+            <p className="mt-2 text-[16px] text-muted fade-in">{longWords.text} <span>— {longWords.source}</span></p>
           )}
         </>
       ) : simple ? (
@@ -225,8 +225,14 @@ export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }
         onClose={() => setTenOpen(false)}
         onDone={() => {
           setTenOpen(false)
-          if (isRun) void save({ status: 'partial', actual_min: 10 })
-          else void save({ status: 'done' })
+          if (isRun) {
+            // "It counts" — but a partial run still needs its miles (§4.1), so go through the Partial sheet.
+            setPartialMi('')
+            setPartialMin('10')
+            setPartialOpen(true)
+          } else {
+            void save({ status: 'done' })
+          }
         }}
       />
 
@@ -246,8 +252,8 @@ export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }
 
       <Sheet open={finishOpen} onClose={() => setFinishOpen(false)} title={isTT ? 'Your 5K time' : 'Finish time'}>
         <p className="text-muted text-[15px] mb-3">{isTT ? 'Every pace in the plan updates from this number.' : 'Records a PR for this distance.'}</p>
-        <Field label={isTT ? 'mm:ss' : 'h:mm:ss'}>
-          <input className={`${inputClass} tabular text-[22px]`} inputMode="numeric" value={finish} onChange={(e) => { setFinish(e.target.value); setFinishErr(null) }} placeholder={isTT ? '22:00' : '2:05:00'} autoFocus />
+        <Field label={isTT ? 'mm:ss' : 'h:mm:ss'} hint="Digits only works too: 2200 → 22:00.">
+          <input className={`${inputClass} tabular text-[22px]`} inputMode="numeric" value={finish} onChange={(e) => { setFinish(e.target.value); setFinishErr(null) }} placeholder={isTT ? '22:00 or 2200' : '2:05:00 or 20500'} autoFocus />
         </Field>
         {finishErr && <p className="text-accent text-[14px] mb-2">{finishErr}</p>}
         <div className="grid grid-cols-[1fr_auto] gap-2">

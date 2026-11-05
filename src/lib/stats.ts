@@ -43,7 +43,7 @@ export function longRunProgression(results: Record<string, SessionResult>): Long
     for (const d of plan.days) {
       if (d.week_index !== w.index) continue
       for (const s of d.sessions) {
-        if (!isRunLike(s)) continue
+        if (!isRunLike(s) || s.optional) continue
         const r = resultFor(results, d.date, s.id)
         if (!isCompleted(r)) continue
         const mi = creditedMiles(s, r)

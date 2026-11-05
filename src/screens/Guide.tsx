@@ -42,7 +42,7 @@ function Phases() {
           {ph.rule && <P label="Rule.">{ph.rule}</P>}
           <div className="mt-3 rounded-xl bg-surface2/60 border border-border divide-y divide-border">
             {Object.entries(ph.template).map(([d, t]) => (
-              <div key={d} className="flex gap-3 px-3 py-1.5 text-[15px]">
+              <div key={d} className="flex gap-3 px-3 py-1.5 text-[16px]">
                 <span className="w-10 font-semibold text-muted">{d}</span>
                 <span>{t}</span>
               </div>
@@ -57,7 +57,7 @@ function Phases() {
                     <span className="text-[13px] text-muted">{b.dates}</span>
                   </div>
                   <div className="text-[13px] text-muted tabular mt-0.5">Mileage {b.mileage} · long run {b.long_run} · lifts {b.lifts}</div>
-                  <p className="text-[15px] mt-1">{b.note}</p>
+                  <p className="text-[16px] mt-1">{b.note}</p>
                 </div>
               ))}
             </div>
@@ -104,7 +104,7 @@ function Nutrition() {
         <h3 className="font-bold text-[18px]">Late night</h3>
         <P>{n.late_night.rule}</P>
         <div className="text-[13px] font-semibold uppercase tracking-wide text-muted mt-3 mb-1">Costco list</div>
-        <ul className="list-disc pl-5 space-y-0.5 text-[15px]">
+        <ul className="list-disc pl-5 space-y-0.5 text-[16px]">
           {n.late_night.costco_list.map((x) => <li key={x}>{x}</li>)}
         </ul>
       </Card>
@@ -162,11 +162,11 @@ function Sunday() {
       </Card>
       <Card>
         <h3 className="font-bold text-[18px]">Claude pulls from Strava</h3>
-        <ul className="list-disc pl-5 mt-1 space-y-0.5 text-[15px]">{c.claude_pulls_from_strava.map((x) => <li key={x}>{x}</li>)}</ul>
+        <ul className="list-disc pl-5 mt-1 space-y-0.5 text-[16px]">{c.claude_pulls_from_strava.map((x) => <li key={x}>{x}</li>)}</ul>
       </Card>
       <Card>
         <h3 className="font-bold text-[18px]">You report</h3>
-        <ul className="list-disc pl-5 mt-1 space-y-0.5 text-[15px]">{c.you_report.map((x) => <li key={x}>{x}</li>)}</ul>
+        <ul className="list-disc pl-5 mt-1 space-y-0.5 text-[16px]">{c.you_report.map((x) => <li key={x}>{x}</li>)}</ul>
       </Card>
       <Card><P label="You get.">{c.you_get}</P></Card>
       <Card><P label="Monthly.">{c.monthly}</P></Card>
@@ -219,7 +219,7 @@ function Gear() {
             <span className="font-bold text-[16px]">{g.item}</span>
             <span className="text-[13px] text-muted text-right">{g.when}</span>
           </div>
-          <p className="text-[15px] text-muted mt-0.5">{g.note}</p>
+          <p className="text-[16px] text-muted mt-0.5">{g.note}</p>
         </div>
       ))}
     </Card>

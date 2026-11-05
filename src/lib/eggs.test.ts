@@ -60,3 +60,15 @@ describe('easter eggs', () => {
     expect(streakMilestone('2026-11-11', results, habits)).toBeNull()
   })
 })
+
+describe('race-day egg', () => {
+  it('comes from the race card\'s own details when nothing is pinned', () => {
+    const d = getDay('2027-02-13')!
+    expect(d.egg).toBeNull()
+    expect(dominantPool(d)).toBe('race')
+    const y = getDay('2027-02-12')!
+    const results = Object.fromEntries(y.sessions.map((s) => [resultKey(y.date, s.id), { date: y.date, session_id: s.id, status: 'done' as const, loggedAt: 'x' }]))
+    const line = eggFor(d, { today: '2027-02-13', now: new Date(2027, 1, 13, 14, 0), results })!
+    expect(d.sessions[0].details).toContain(line.text)
+  })
+})

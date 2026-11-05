@@ -79,12 +79,12 @@ export function SectionTitle({ children, right }: { children: React.ReactNode; r
 }
 
 export function Muted({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  return <p className={`text-muted text-[15px] ${className}`}>{children}</p>
+  return <p className={`text-muted ${className}`}>{children}</p>
 }
 
 export function Screen({ title, subtitle, children, right, back, backLabel = 'Back' }: { title: string; subtitle?: string; right?: React.ReactNode; back?: () => void; backLabel?: string; children: React.ReactNode }) {
   return (
-    <div className="px-4 pb-6 fade-in">
+    <div className="px-4 pb-6">
       {back && (
         <button onClick={back} className="mt-3 -ml-1 flex items-center gap-1 text-[15px] font-semibold text-muted">
           <Icon name="back" size={18} /> {backLabel}

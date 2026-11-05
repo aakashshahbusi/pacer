@@ -154,7 +154,6 @@ function Block({ phaseId, block, weeks, today, defaultOpen }: { phaseId: number;
 export default function PlanScreen() {
   const todayRaw = useToday()
   const today = clampToPlan(todayRaw)
-  const currentDay = getDay(today)
   const [jump, setJump] = useState(today)
 
   const phases = useMemo(() => {
@@ -172,7 +171,7 @@ export default function PlanScreen() {
 
   return (
     <Screen title="Plan" subtitle={`${plan.days.length} days · ${plan.weeks.length} weeks · ${content.app.start} → ${content.app.end}`}>
-      <RaceLadder today={today} />
+      <RaceLadder today={todayRaw} />
 
       <div className="mt-4 flex items-center gap-2">
         <input type="date" className={`${inputClass} py-2`} value={jump} min={plan.start} max={plan.end} onChange={(e) => setJump(e.target.value)} />
@@ -191,7 +190,7 @@ export default function PlanScreen() {
               block={b.block}
               weeks={b.weeks}
               today={today}
-              defaultOpen={!!currentDay && currentDay.phase === phase.id && currentDay.block === b.block}
+              defaultOpen={b.weeks.some((w) => today >= w.start && today <= w.end)}
             />
           ))}
         </Card>

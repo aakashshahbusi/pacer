@@ -47,7 +47,7 @@ export default function SettingsScreen() {
   const saveFiveK = async () => {
     const sec = parseClock(timeText)
     if (!sec || sec < 600 || sec > 3600) {
-      setErr('Enter a 5K time as mm:ss')
+      setErr('Enter a 5K time as mm:ss (digits only, like 2200, works too)')
       return
     }
     await updateSettings((s) => ({ ...s, fiveK: [...s.fiveK, { seconds: sec, date: dateText || todayISO() }] }))
@@ -68,8 +68,9 @@ export default function SettingsScreen() {
       try {
         await nav.share({ files: [file], title: 'Pacer export' })
         return
-      } catch {
-        /* fall through to download */
+      } catch (e) {
+        if ((e as DOMException)?.name === 'AbortError') return // user dismissed the share sheet
+        /* any other share failure: fall through to download */
       }
     }
     const url = URL.createObjectURL(file)
@@ -131,10 +132,10 @@ export default function SettingsScreen() {
             <span className="text-[14px] text-muted text-right max-w-[70%]">{content.athlete.baseline_5k_label}</span>
           )}
         </div>
-        <p className="text-[14px] text-muted mt-2">{content.pace_engine.description}</p>
+        <p className="text-[16px] text-muted mt-2">{content.pace_engine.description}</p>
         <div className="mt-4 grid grid-cols-[1fr_1fr] gap-2">
           <Field label="5K time (mm:ss)">
-            <input className={`${inputClass} tabular text-[20px]`} inputMode="numeric" placeholder="22:00" value={timeText} onChange={(e) => { setTimeText(e.target.value); setErr(null) }} />
+            <input className={`${inputClass} tabular text-[20px]`} inputMode="numeric" placeholder="22:00 or 2200" value={timeText} onChange={(e) => { setTimeText(e.target.value); setErr(null) }} />
           </Field>
           <Field label="Date">
             <input className={inputClass} type="date" value={dateText} min={content.app.start} onChange={(e) => setDateText(e.target.value)} />
@@ -164,7 +165,7 @@ export default function SettingsScreen() {
         <div className="grid grid-cols-2 gap-3">
           {wakeKeys.map((k) => (
             <Field key={k} label={k}>
-              <input className={`${inputClass} tabular`} inputMode="numeric" value={settings.wakeTimes[k] ?? ''} onChange={(e) => updateSettings((s) => ({ ...s, wakeTimes: { ...s.wakeTimes, [k]: e.target.value } }))} />
+              <input className={`${inputClass} tabular`} value={settings.wakeTimes[k] ?? ''} onChange={(e) => updateSettings((s) => ({ ...s, wakeTimes: { ...s.wakeTimes, [k]: e.target.value } }))} />
             </Field>
           ))}
         </div>

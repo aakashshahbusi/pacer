@@ -61,3 +61,17 @@ describe('paceFor', () => {
     expect(currentFiveK({ fiveK: [{ seconds: 1300, date: '2027-03-01' }, { seconds: 1320, date: '2027-01-20' }] })!.seconds).toBe(1300)
   })
 })
+
+describe('parseClock', () => {
+  it('accepts colon and digits-only forms', async () => {
+    const { parseClock } = await import('./dates')
+    expect(parseClock('22:00')).toBe(1320)
+    expect(parseClock('2200')).toBe(1320)
+    expect(parseClock('3:45:00')).toBe(13500)
+    expect(parseClock('34500')).toBe(13500)
+    expect(parseClock('20500')).toBe(7500)
+    expect(parseClock('12')).toBeNull()
+    expect(parseClock('')).toBeNull()
+    expect(parseClock('2290')).toBeNull()
+  })
+})

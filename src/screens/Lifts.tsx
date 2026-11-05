@@ -68,11 +68,11 @@ function ExerciseView({ exKey }: { exKey: string }) {
 
   return (
     <Screen title={name} back={() => navigate('lifts')} backLabel="Lifts">
-      {history.length === 0 ? (
+      {!last ? (
         <Card><Muted>No sets logged yet. Log them from the lift card on Today.</Muted></Card>
       ) : (
         <>
-          <Card>
+          {history.length > 0 && <Card>
             <div className="text-[12px] font-semibold uppercase tracking-wide text-muted mb-2">Top set over time</div>
             <div className="h-44">
               <ResponsiveContainer width="100%" height="100%">
@@ -85,7 +85,7 @@ function ExerciseView({ exKey }: { exKey: string }) {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-          </Card>
+          </Card>}
           <div className="grid grid-cols-3 gap-2 mt-3">
             <Card className="text-center">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Best set</div>
@@ -99,7 +99,7 @@ function ExerciseView({ exKey }: { exKey: string }) {
             </Card>
             <Card className="text-center">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Sessions</div>
-              <div className="tabular text-[22px] font-bold mt-1">{history.length}</div>
+              <div className="tabular text-[22px] font-bold mt-1">{logsFor(liftLogs, name).length}</div>
             </Card>
           </div>
           {last && (

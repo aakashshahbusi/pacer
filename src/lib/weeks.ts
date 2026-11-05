@@ -61,7 +61,7 @@ export function summarizeWeek(index: number, results: Record<string, SessionResu
         actualMiles += mi
         if (isCompleted(r)) {
           runsDone++
-          if (s.pace_key === 'long' || s.kind === 'race' || (s.distance_mi ?? 0) >= week.long_run_mi) {
+          if (!s.optional && (s.pace_key === 'long' || s.kind === 'race' || (s.distance_mi ?? 0) >= week.long_run_mi)) {
             if (longRunDone == null || mi > longRunDone) longRunDone = mi
           }
         }

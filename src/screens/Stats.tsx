@@ -8,7 +8,7 @@ import { useToday } from '../lib/today'
 import { computeStreak } from '../lib/streak'
 import { longRunProgression, milesByWeek, runningPRs, runsCompleted, totalMiles } from '../lib/stats'
 import { liftPRs } from '../lib/lifts'
-import { fmtClock, formatMonthDay, formatMonthDayYear } from '../lib/dates'
+import { fmtClock, formatMonthDay, formatMonthDayYear, toISO } from '../lib/dates'
 import { badgeDefs } from '../lib/badges'
 import { ShoesManager } from '../components/ShoesManager'
 import { ownWords } from '../lib/eggs'
@@ -154,7 +154,7 @@ export default function Stats() {
                 <span className="font-bold leading-tight">{b.name}</span>
               </div>
               <p className="mt-2 text-[13px] leading-snug">{u ? b.desc : b.unlock}</p>
-              {u && <p className="mt-1 text-[11px] text-muted tabular">{formatMonthDayYear(u.unlockedAt.slice(0, 10))}</p>}
+              {u && <p className="mt-1 text-[11px] text-muted tabular">{formatMonthDayYear(toISO(new Date(u.unlockedAt)))}</p>}
             </Card>
           )
         })}

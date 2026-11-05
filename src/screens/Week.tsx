@@ -26,8 +26,8 @@ function Dot({ state, optional }: { state: ReturnType<typeof dotState>; optional
 }
 
 function sessionDots(day: PlanDay, results: Parameters<typeof dotState>[2]) {
-  const shown = day.sessions.filter((s: Session) => s.kind !== 'rest' && s.kind !== 'off' && s.kind !== 'travel' && s.kind !== 'flex')
-  return shown.map((s) => <Dot key={s.id} state={dotState(day, s, results)} optional={s.optional} />)
+  const quiet = (s: Session) => s.optional || s.kind === 'rest' || s.kind === 'off' || s.kind === 'travel' || s.kind === 'flex'
+  return day.sessions.map((s) => <Dot key={s.id} state={dotState(day, s, results)} optional={quiet(s)} />)
 }
 
 export default function Week() {
@@ -68,7 +68,7 @@ export default function Week() {
         a.remove()
       }
     } catch (e) {
-      console.error('share failed', e)
+      if ((e as DOMException)?.name !== 'AbortError') console.error('share failed', e)
     } finally {
       setSharing(false)
     }

@@ -92,9 +92,9 @@ function ExerciseCard({ ex, day, session, setCount, home, register }: ExerciseCa
           <Icon name="play" size={12} /> watch
         </a>
       </div>
-      {ex.note && <p className="mt-1.5 text-[14px] text-muted">{ex.note}</p>}
+      {ex.note && <p className="mt-1.5 text-[16px] text-muted">{ex.note}</p>}
       {home && ex.home_variant && (
-        <p className="mt-1.5 text-[14px]"><span className="font-semibold text-accent">Home: </span>{ex.home_variant}</p>
+        <p className="mt-1.5 text-[16px]"><span className="font-semibold text-accent">Home: </span>{ex.home_variant}</p>
       )}
       <div className="mt-3 space-y-1.5">
         {rows.map((s, i) => (
@@ -144,14 +144,14 @@ export const LiftBody = React.forwardRef<LiftBodyHandle, { day: PlanDay; session
         <span className="text-[13px] font-semibold text-muted">{program.title}</span>
         {session.light && <span className="text-[11px] font-semibold uppercase tracking-wide text-accent shrink-0">light</span>}
       </div>
-      {session.light && <p className="mt-1 text-[13px] text-muted">{generalNotes.light_week}</p>}
+      {session.light && <p className="mt-1 text-[16px] text-muted">{generalNotes.light_week}</p>}
       {home && <p className="mt-1 text-[13px] text-muted">Home variants shown where the program has one.</p>}
       <div className="mt-2 space-y-2">
         {program.exercises.map((ex) => (
           <ExerciseCard key={ex.name} ex={ex} day={day} session={session} setCount={setCountFor(ex)} home={home} register={register} />
         ))}
       </div>
-      <p className="mt-2 text-[13px] text-muted">{generalNotes.rep_in_reserve}</p>
+      <p className="mt-2 text-[16px] text-muted">{generalNotes.rep_in_reserve}</p>
     </div>
   )
 })

@@ -4,7 +4,7 @@ import { copy } from '../data/content'
 import { useToday } from '../lib/today'
 import { diffDays, formatLong } from '../lib/dates'
 import { nextRace, shortRaceName } from '../lib/selectors'
-import { useStore } from '../store/store'
+import { useActions, useStore } from '../store/store'
 import { HabitRow } from '../components/HabitRow'
 import { computeStreak, dayCounts, hasSkip, isDayClosed } from '../lib/streak'
 import { eggFor, streakMilestone } from '../lib/eggs'
@@ -46,6 +46,7 @@ function relativeLabel(selected: string, today: string): string {
 export default function Today({ route }: { route: Route }) {
   const today = useToday()
   const { settings, results, habits } = useStore()
+  const { updateSettings } = useActions()
   const initial = route.sub && ISO.test(route.sub) && getDay(route.sub) ? route.sub : clampToPlan(today)
   const [date, setDate] = useState(initial)
 
@@ -88,11 +89,11 @@ export default function Today({ route }: { route: Route }) {
   const counts = dayCounts(day, results, habits)
   const skipped = hasSkip(day, results)
   const visibleSessions = day.sessions.filter((s) => !(s.optional && settings.hiddenOptional.includes(s.id)))
-  const hiddenCount = day.sessions.length - visibleSessions.length
+  const hiddenSessions = day.sessions.filter((s) => s.optional && settings.hiddenOptional.includes(s.id))
   const isToday = date === clampToPlan(today)
 
   return (
-    <div className="px-4 pb-6 fade-in" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} key={date}>
+    <div className="px-4 pb-6" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} key={date}>
       {/* Header */}
       <header className="pt-3 pb-3">
         <div className="flex items-center justify-between">
@@ -136,7 +137,7 @@ export default function Today({ route }: { route: Route }) {
         <p className="text-center text-[15px] font-semibold px-2 mb-2 fade-in">{milestone}</p>
       )}
       {egg && (
-        <p className="text-muted text-[15px] italic text-center px-2 mb-4">
+        <p className="text-muted text-[16px] italic text-center px-2 mb-4">
           {egg.text}
           {egg.source && <span className="not-italic text-[13px]"> — {egg.source}</span>}
         </p>
@@ -179,12 +180,19 @@ export default function Today({ route }: { route: Route }) {
             <Muted>{copy.empty_today}</Muted>
           </Card>
         )}
-        {hiddenCount > 0 && (
-          <p className="text-center text-[13px] text-muted">
-            {hiddenCount} optional session{hiddenCount === 1 ? '' : 's'} hidden ·{' '}
-            <button className="underline" onClick={() => navigate('more', 'settings')}>manage</button>
-          </p>
-        )}
+        {hiddenSessions.map((s) => (
+          <div key={s.id} className="flex items-center justify-between gap-3 rounded-[16px] border border-dashed border-border px-4 py-2.5">
+            <span className="min-w-0 truncate text-[16px] text-muted">
+              {s.title} <span className="text-[12px] font-semibold uppercase tracking-wide">· optional · hidden</span>
+            </span>
+            <button
+              className="shrink-0 text-[14px] font-semibold text-text"
+              onClick={() => updateSettings((st) => ({ ...st, hiddenOptional: st.hiddenOptional.filter((id) => id !== s.id) }))}
+            >
+              Show
+            </button>
+          </div>
+        ))}
       </div>
 
       <HabitRow day={day} />
@@ -195,7 +203,7 @@ export default function Today({ route }: { route: Route }) {
           <div className="text-[12px] font-semibold uppercase tracking-wide text-muted mb-1">Notes</div>
           <ul className="space-y-1">
             {day.notes.map((n, i) => (
-              <li key={i} className="text-[15px] text-muted">{n}</li>
+              <li key={i} className="text-[16px] text-muted">{n}</li>
             ))}
           </ul>
         </div>
@@ -203,7 +211,7 @@ export default function Today({ route }: { route: Route }) {
 
       {/* Context footer */}
       <p className="mt-6 text-center text-[12px] text-muted/70">
-        {day.location === 'India' ? copy.india : day.block === 'Taper' || /taper/i.test(day.week_label) ? copy.taper : `${day.block} · Week ${day.week_index} of ${plan.weeks.length} · ${day.location}`}
+        {day.block === 'Taper' || /taper/i.test(day.week_label) ? copy.taper : `${day.block} · Week ${day.week_index} of ${plan.weeks.length} · ${day.location}`}
       </p>
     </div>
   )
