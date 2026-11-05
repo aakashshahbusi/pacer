@@ -6,7 +6,7 @@ import { labels, content } from '../data/content'
 
 function Placeholder({ title }: { title: string }) {
   return (
-    <Screen title={title} back={() => navigate('more')}>
+    <Screen title={title} back={() => navigate('more')} backLabel="More">
       <p className="text-muted">Coming up in the build order.</p>
     </Screen>
   )

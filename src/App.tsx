@@ -5,6 +5,7 @@ import { useStore } from './store/store'
 import { Screen, Muted } from './components/ui'
 import Today from './screens/Today'
 import More from './screens/More'
+import Lifts from './screens/Lifts'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -29,7 +30,7 @@ export default function App() {
     case 'today': body = <Today route={route} />; break
     case 'week': body = <Placeholder title="Budget vs. Actual" />; break
     case 'plan': body = <Placeholder title="Plan" />; break
-    case 'lifts': body = <Placeholder title="Lifts" />; break
+    case 'lifts': body = <Lifts route={route} />; break
     case 'stats': body = <Placeholder title="Soft hands. Hard data." />; break
     default: body = <More route={route} />
   }

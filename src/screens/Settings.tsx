@@ -113,7 +113,7 @@ export default function SettingsScreen() {
   const wakeKeys = Object.keys(content.sleep.wake_time)
 
   return (
-    <Screen title="Settings" back={() => navigate('more')}>
+    <Screen title="Settings" back={() => navigate('more')} backLabel="More">
       {msg && (
         <div className="mb-3 rounded-xl bg-surface2 border border-border px-3 py-2 text-[14px] flex items-center justify-between">
           <span>{msg}</span>

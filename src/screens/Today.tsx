@@ -7,11 +7,29 @@ import { nextRace, shortRaceName } from '../lib/selectors'
 import { useStore } from '../store/store'
 import { SessionCard } from '../components/SessionCard'
 import { PaceLine } from '../components/PaceLine'
+import { LiftBody, type LiftBodyHandle } from '../components/LiftBody'
+import type { PlanDay, Session } from '../types'
 import { Button, Card, Muted } from '../components/ui'
 import { Icon } from '../components/Icon'
 import { navigate, type Route } from '../lib/route'
 
 const ISO = /^\d{4}-\d{2}-\d{2}$/
+
+function TodaySessionCard({ day, session }: { day: PlanDay; session: Session }) {
+  const liftRef = useRef<LiftBodyHandle>(null)
+  if (session.kind === 'lift') {
+    return (
+      <SessionCard
+        day={day}
+        session={session}
+        body={<LiftBody ref={liftRef} day={day} session={session} />}
+        onBeforeDone={() => liftRef.current?.saveAll() ?? Promise.resolve()}
+      />
+    )
+  }
+  const body = session.kind === 'run' || session.kind === 'race' ? <PaceLine session={session} /> : undefined
+  return <SessionCard day={day} session={session} body={body} />
+}
 
 function relativeLabel(selected: string, today: string): string {
   const d = diffDays(today, selected)
@@ -106,7 +124,7 @@ export default function Today({ route }: { route: Route }) {
       {/* Sessions */}
       <div className="space-y-3">
         {visibleSessions.map((s) => (
-          <SessionCard key={s.id} day={day} session={s} body={s.kind === 'run' || s.kind === 'race' ? <PaceLine session={s} /> : undefined} />
+          <TodaySessionCard key={s.id} day={day} session={s} />
         ))}
         {visibleSessions.length === 0 && (
           <Card>

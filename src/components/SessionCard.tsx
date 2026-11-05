@@ -15,6 +15,8 @@ export interface SessionCardProps {
   footer?: React.ReactNode
   /** Called after a Done is saved (used for confirmations). */
   onDone?: (r: SessionResult) => void
+  /** Awaited before a Done is recorded (lift set logs). */
+  onBeforeDone?: () => Promise<void>
 }
 
 export function Details({ items, defaultOpen = false }: { items: string[]; defaultOpen?: boolean }) {
@@ -73,7 +75,7 @@ function StatusLine({ r, session, onUndo }: { r: SessionResult; session: Session
   )
 }
 
-export function SessionCard({ day, session, body, footer, onDone }: SessionCardProps) {
+export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }: SessionCardProps) {
   const { results, settings } = useStore()
   const { setResult, clearResult, updateSettings } = useActions()
   const r = resultFor(results, day.date, session.id)
@@ -91,6 +93,7 @@ export function SessionCard({ day, session, body, footer, onDone }: SessionCardP
   const hidden = settings.hiddenOptional.includes(session.id)
 
   const save = async (partial: Partial<SessionResult> & { status: SessionResult['status'] }) => {
+    if (partial.status !== 'skipped' && onBeforeDone) await onBeforeDone()
     const rec = { date: day.date, session_id: session.id, ...partial }
     await setResult(rec)
     if (partial.status === 'done') onDone?.({ ...rec, loggedAt: new Date().toISOString() })
