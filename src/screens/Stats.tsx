@@ -11,6 +11,7 @@ import { liftPRs } from '../lib/lifts'
 import { fmtClock, formatMonthDay, formatMonthDayYear } from '../lib/dates'
 import { badgeDefs } from '../lib/badges'
 import { ShoesManager } from '../components/ShoesManager'
+import { ownWords } from '../lib/eggs'
 
 function MilesByWeekChart({ data, currentIndex }: { data: ReturnType<typeof milesByWeek>; currentIndex: number }) {
   const W = 343
@@ -63,6 +64,7 @@ export default function Stats() {
   const prs = useMemo(() => runningPRs(results, settings), [results, settings])
   const lifts = useMemo(() => liftPRs(liftLogs), [liftLogs])
   const runs = useMemo(() => runsCompleted(results), [results])
+  const shoeWords = ownWords('shoe tracker')
   const currentWeek = plan.days.find((d) => d.date === today)?.week_index ?? -1
   const plannedSoFar = byWeek.filter((w) => w.start <= today).reduce((a, w) => a + w.planned, 0)
 
@@ -159,6 +161,7 @@ export default function Stats() {
       </div>
 
       <SectionTitle>{labels.shoe_tracker}</SectionTitle>
+      {shoeWords && <p className="mb-2 text-[14px] text-muted italic">{shoeWords.text} <span className="not-italic">— {shoeWords.source}</span></p>}
       <ShoesManager />
     </Screen>
   )

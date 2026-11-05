@@ -7,6 +7,7 @@ import { nextRace, shortRaceName } from '../lib/selectors'
 import { useStore } from '../store/store'
 import { HabitRow } from '../components/HabitRow'
 import { computeStreak, dayCounts, hasSkip, isDayClosed } from '../lib/streak'
+import { eggFor, streakMilestone } from '../lib/eggs'
 import { SessionCard } from '../components/SessionCard'
 import { PaceLine } from '../components/PaceLine'
 import { LiftBody, type LiftBodyHandle } from '../components/LiftBody'
@@ -81,6 +82,8 @@ export default function Today({ route }: { route: Route }) {
   }
 
   const streak = useMemo(() => computeStreak(today, results, habits), [today, results, habits])
+  const egg = useMemo(() => eggFor(day, { today, results }), [day, today, results])
+  const milestone = useMemo(() => streakMilestone(date, results, habits), [date, results, habits])
   const closed = isDayClosed(day, results, habits)
   const counts = dayCounts(day, results, habits)
   const skipped = hasSkip(day, results)
@@ -129,8 +132,15 @@ export default function Today({ route }: { route: Route }) {
         )}
       </header>
 
-      {/* Easter egg line (pinned only for now; rotation arrives in step 10) */}
-      {day.egg && <p className="text-muted text-[15px] italic text-center px-2 mb-4">{day.egg}</p>}
+      {milestone && (
+        <p className="text-center text-[15px] font-semibold px-2 mb-2 fade-in">{milestone}</p>
+      )}
+      {egg && (
+        <p className="text-muted text-[15px] italic text-center px-2 mb-4">
+          {egg.text}
+          {egg.source && <span className="not-italic text-[13px]"> — {egg.source}</span>}
+        </p>
+      )}
 
       {isToday && streak.brokeYesterday > 0 && (
         <div className="mb-4 rounded-[16px] border border-border bg-surface px-4 py-3 text-[15px]">
@@ -193,7 +203,7 @@ export default function Today({ route }: { route: Route }) {
 
       {/* Context footer */}
       <p className="mt-6 text-center text-[12px] text-muted/70">
-        {day.location === 'India' ? copy.india : `${day.block} · Week ${day.week_index} of ${plan.weeks.length} · ${day.location}`}
+        {day.location === 'India' ? copy.india : day.block === 'Taper' || /taper/i.test(day.week_label) ? copy.taper : `${day.block} · Week ${day.week_index} of ${plan.weeks.length} · ${day.location}`}
       </p>
     </div>
   )

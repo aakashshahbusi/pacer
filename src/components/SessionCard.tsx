@@ -5,6 +5,8 @@ import { Icon } from './Icon'
 import { useActions, useStore } from '../store/store'
 import { resultFor } from '../lib/selectors'
 import { fmtClock, parseClock } from '../lib/dates'
+import { TenMinute } from './TenMinute'
+import { ownWords } from '../lib/eggs'
 
 export interface SessionCardProps {
   day: PlanDay
@@ -85,12 +87,14 @@ export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }
   const [partialMin, setPartialMin] = useState('')
   const [finish, setFinish] = useState('')
   const [finishErr, setFinishErr] = useState<string | null>(null)
+  const [tenOpen, setTenOpen] = useState(false)
 
   const isRun = session.kind === 'run' || session.kind === 'race'
   const isRace = session.kind === 'race'
   const isTT = session.pace_key === 'tt'
   const simple = session.kind === 'rest' || session.kind === 'off' || session.kind === 'travel' || session.kind === 'flex'
   const hidden = settings.hiddenOptional.includes(session.id)
+  const longWords = ownWords('finish of any long run')
 
   const save = async (partial: Partial<SessionResult> & { status: SessionResult['status'] }) => {
     if (partial.status !== 'skipped' && onBeforeDone) await onBeforeDone()
@@ -184,7 +188,12 @@ export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }
       <Details items={session.details} defaultOpen={isRace} />
 
       {r ? (
-        <StatusLine r={r} session={session} onUndo={() => clearResult(day.date, session.id)} />
+        <>
+          <StatusLine r={r} session={session} onUndo={() => clearResult(day.date, session.id)} />
+          {r.status !== 'skipped' && session.pace_key === 'long' && longWords && (
+            <p className="mt-2 text-[14px] text-muted fade-in">{longWords.text} <span>— {longWords.source}</span></p>
+          )}
+        </>
       ) : simple ? (
         <div className="mt-4">
           <Button variant="secondary" className="w-full" onClick={() => save({ status: 'done' })}>
@@ -201,7 +210,25 @@ export function SessionCard({ day, session, body, footer, onDone, onBeforeDone }
         </div>
       )}
 
+      {!r && (session.kind === 'run' || session.kind === 'lift') && (
+        <div className="mt-3 text-center">
+          <button className="text-[14px] text-muted underline-offset-4 underline decoration-muted/40" onClick={() => setTenOpen(true)}>
+            Don't feel like it
+          </button>
+        </div>
+      )}
+
       {footer}
+
+      <TenMinute
+        open={tenOpen}
+        onClose={() => setTenOpen(false)}
+        onDone={() => {
+          setTenOpen(false)
+          if (isRun) void save({ status: 'partial', actual_min: 10 })
+          else void save({ status: 'done' })
+        }}
+      />
 
       <Sheet open={partialOpen} onClose={() => setPartialOpen(false)} title="Partial">
         {isRun && (
