@@ -6,6 +6,7 @@ import { Screen, Muted } from './components/ui'
 import Today from './screens/Today'
 import More from './screens/More'
 import Lifts from './screens/Lifts'
+import Week from './screens/Week'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -28,7 +29,7 @@ export default function App() {
   let body: JSX.Element
   switch (route.tab) {
     case 'today': body = <Today route={route} />; break
-    case 'week': body = <Placeholder title="Budget vs. Actual" />; break
+    case 'week': body = <Week />; break
     case 'plan': body = <Placeholder title="Plan" />; break
     case 'lifts': body = <Lifts route={route} />; break
     case 'stats': body = <Placeholder title="Soft hands. Hard data." />; break
