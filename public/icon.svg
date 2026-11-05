@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#0B0B0D"/>
+  <!-- forward-leaning P: stem + bowl, drawn as strokes, skewed to lean into the run -->
+  <g transform="translate(256 256) skewX(-12) translate(-256 -256)" fill="none" stroke="#C8102E" stroke-width="58" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M186 404 V118"/>
+    <path d="M186 118 H286 a84 84 0 0 1 0 168 H186"/>
+  </g>
+  <!-- the forward stroke: a short crimson dash trailing the stem -->
+  <path d="M118 404 H150" stroke="#C8102E" stroke-width="58" stroke-linecap="round" opacity="0.55"/>
+</svg>

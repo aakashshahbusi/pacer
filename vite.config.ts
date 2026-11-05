@@ -44,5 +44,15 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          charts: ['recharts'],
+          plan: ['./plan.json', './content.json'],
+        },
+      },
+    },
+  },
   test: { environment: 'node' },
 } as Parameters<typeof defineConfig>[0])
