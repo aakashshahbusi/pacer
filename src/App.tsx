@@ -3,6 +3,7 @@ import { useRoute } from './lib/route'
 import { TabBar } from './components/TabBar'
 import { useStore } from './store/store'
 import { Screen, Muted } from './components/ui'
+import Today from './screens/Today'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -24,7 +25,7 @@ export default function App() {
 
   let body: JSX.Element
   switch (route.tab) {
-    case 'today': body = <Placeholder title="Today" />; break
+    case 'today': body = <Today route={route} />; break
     case 'week': body = <Placeholder title="Budget vs. Actual" />; break
     case 'plan': body = <Placeholder title="Plan" />; break
     case 'lifts': body = <Placeholder title="Lifts" />; break
