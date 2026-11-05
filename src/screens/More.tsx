@@ -2,21 +2,15 @@ import { Card, Screen } from '../components/ui'
 import { Icon } from '../components/Icon'
 import { navigate, type Route } from '../lib/route'
 import SettingsScreen from './Settings'
+import Log from './Log'
+import Guide from './Guide'
 import { labels, content } from '../data/content'
-
-function Placeholder({ title }: { title: string }) {
-  return (
-    <Screen title={title} back={() => navigate('more')} backLabel="More">
-      <p className="text-muted">Coming up in the build order.</p>
-    </Screen>
-  )
-}
 
 export default function More({ route }: { route: Route }) {
   const page = route.sub?.split('/')[0] ?? null
   if (page === 'settings') return <SettingsScreen />
-  if (page === 'log') return <Placeholder title="Log" />
-  if (page === 'guide') return <Placeholder title="Guide" />
+  if (page === 'log') return <Log />
+  if (page === 'guide') return <Guide route={route} />
 
   const items: { id: string; title: string; sub: string }[] = [
     { id: 'log', title: 'Log', sub: content.habits.custom_log.description },
