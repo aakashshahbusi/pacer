@@ -2,20 +2,14 @@ import { useEffect } from 'react'
 import { useRoute } from './lib/route'
 import { TabBar } from './components/TabBar'
 import { useStore } from './store/store'
-import { Screen, Muted } from './components/ui'
 import Today from './screens/Today'
 import More from './screens/More'
 import Lifts from './screens/Lifts'
 import Week from './screens/Week'
 import PlanScreen from './screens/Plan'
-
-function Placeholder({ title }: { title: string }) {
-  return (
-    <Screen title={title}>
-      <Muted>Coming up in the build order.</Muted>
-    </Screen>
-  )
-}
+import Stats from './screens/Stats'
+import { ToastProvider } from './components/Toast'
+import { BadgeWatcher } from './components/BadgeWatcher'
 
 export default function App() {
   const route = useRoute()
@@ -33,16 +27,19 @@ export default function App() {
     case 'week': body = <Week />; break
     case 'plan': body = <PlanScreen />; break
     case 'lifts': body = <Lifts route={route} />; break
-    case 'stats': body = <Placeholder title="Soft hands. Hard data." />; break
+    case 'stats': body = <Stats />; break
     default: body = <More route={route} />
   }
 
   return (
-    <div className="min-h-full mx-auto max-w-[560px]" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-      <main className="pb-[calc(76px+env(safe-area-inset-bottom))]">
-        {ready ? body : <div className="p-6 text-muted">Loading…</div>}
-      </main>
-      <TabBar active={route.tab} />
-    </div>
+    <ToastProvider>
+      <BadgeWatcher />
+      <div className="min-h-full mx-auto max-w-[560px]" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+        <main className="pb-[calc(76px+env(safe-area-inset-bottom))]">
+          {ready ? body : <div className="p-6 text-muted">Loading…</div>}
+        </main>
+        <TabBar active={route.tab} />
+      </div>
+    </ToastProvider>
   )
 }

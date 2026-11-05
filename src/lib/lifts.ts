@@ -75,7 +75,7 @@ export function bestSet(all: Record<string, LiftLog> | LiftLog[], name: string):
 
 /** The main lifts for the PR list, matched against program exercise names. */
 export const MAIN_LIFTS: { label: string; match: RegExp }[] = [
-  { label: 'Back squat', match: /back squat/i },
+  { label: 'Back squat', match: /^barbell back squat/i },
   { label: 'Bench press', match: /^barbell bench press/i },
   { label: 'Deadlift', match: /^trap-bar deadlift|^conventional deadlift|^deadlift/i },
   { label: 'Overhead press', match: /^overhead press/i },

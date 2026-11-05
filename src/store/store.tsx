@@ -5,6 +5,9 @@ import type {
 import { clearAll, habitKey, liftKey, loadAll, put, del, resultKey, writeAll } from './db'
 import { defaultSettings, normalizeSettings } from './defaults'
 import { nowISO } from '../lib/dates'
+import { findSession } from '../data/plan'
+import { creditedMiles, isRunLike } from '../lib/selectors'
+import { round1 } from '../lib/weeks'
 
 export interface StoreState {
   ready: boolean
@@ -99,21 +102,38 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
 
   const bump = (s: StoreState): StoreState => ({ ...s, saveTick: s.saveTick + 1 })
 
+  /** Completed runs credit their miles to the active shoe; undoing/changing a result adjusts it back. */
+  const shoeAdjusted = (settings: Settings, date: string, sessionId: string, before: SessionResult | undefined, after: SessionResult | undefined): Settings | null => {
+    const session = findSession(date, sessionId)
+    if (!session || !isRunLike(session)) return null
+    const delta = creditedMiles(session, after) - creditedMiles(session, before)
+    if (delta === 0) return null
+    const active = settings.shoes.find((sh) => sh.active && !sh.retired) ?? settings.shoes.find((sh) => sh.active)
+    if (!active) return null
+    return { ...settings, shoes: settings.shoes.map((sh) => (sh.id === active.id ? { ...sh, miles: Math.max(0, round1(sh.miles + delta)) } : sh)) }
+  }
+
   const setResult = useCallback<StoreActions['setResult']>(async (r) => {
     const rec: SessionResult = { ...r, loggedAt: r.loggedAt ?? nowISO() }
     const key = resultKey(r.date, r.session_id)
-    setState((s) => bump({ ...s, results: { ...s.results, [key]: rec } }))
+    const prev = stateRef.current.results[key]
+    const nextSettings = shoeAdjusted(stateRef.current.settings, r.date, r.session_id, prev, rec)
+    setState((s) => bump({ ...s, results: { ...s.results, [key]: rec }, settings: nextSettings ?? s.settings }))
     await put('results', { ...rec, _k: key })
+    if (nextSettings) await put('settings', nextSettings, 'settings')
   }, [])
 
   const clearResult = useCallback<StoreActions['clearResult']>(async (date, sessionId) => {
     const key = resultKey(date, sessionId)
+    const prev = stateRef.current.results[key]
+    const nextSettings = shoeAdjusted(stateRef.current.settings, date, sessionId, prev, undefined)
     setState((s) => {
       const next = { ...s.results }
       delete next[key]
-      return bump({ ...s, results: next })
+      return bump({ ...s, results: next, settings: nextSettings ?? s.settings })
     })
     await del('results', key)
+    if (nextSettings) await put('settings', nextSettings, 'settings')
   }, [])
 
   const setLiftLog = useCallback<StoreActions['setLiftLog']>(async (l) => {
