@@ -1,0 +1,1233 @@
+{
+ "app": {
+  "name": "Pacer",
+  "tagline": "Soft hands. Hard data.",
+  "athlete": "Aakash",
+  "units": "imperial",
+  "coach": "Claude (Sunday check-ins in claude.ai)",
+  "start": "2026-11-05",
+  "end": "2027-11-06"
+ },
+ "athlete": {
+  "name": "Aakash Shah",
+  "home": "Brownsburg, IN",
+  "school": "Indiana University Bloomington \u2014 Briscoe Quad, Kelley (pre-business)",
+  "gym_iu": "SRSC (Student Recreational Sports Center), 1601 Law Ln \u2014 indoor track is 8 laps per mile",
+  "gym_home": "Cousin's rack in Brownsburg \u2014 rack, bar, bench, dumbbells, plates",
+  "winter_running": "SRSC indoor track or treadmill; outside when 20\u00b0F+ and clear. Treadmill or B&O Trail at home.",
+  "summer_running": "B&O Trail (Brownsburg), early mornings before 7 AM",
+  "shoes": [
+   {
+    "name": "Nike Vomero",
+    "first_run": "2026-10-28",
+    "retire_at_miles": 400,
+    "note": "Add a second pair in February and rotate."
+   }
+  ],
+  "baseline_prs": {
+   "mile": {
+    "time": "6:07",
+    "seconds": 367,
+    "date": "2026-10-22",
+    "note": "A 1-mile run between classes. Not all-out."
+   },
+   "two_mile": {
+    "time": "14:25",
+    "seconds": 865,
+    "date": "2026-10-24"
+   },
+   "five_k": {
+    "time": "23:02",
+    "seconds": 1382,
+    "date": "2026-10-24",
+    "note": "Bloomington Montessori 5K trail race, ~230 ft of climbing, not all-out. Flat road estimate: low 21s to 22."
+   }
+  },
+  "baseline_5k_seconds_for_pace_engine": 1382,
+  "baseline_5k_label": "23:02 (Oct 24 trail 5K \u2014 placeholder until the Jan 20 time trial)",
+  "weekly_check_in": "Sunday evening"
+ },
+ "phases": [
+  {
+   "id": 0,
+   "name": "On-Ramp",
+   "dates": "Nov 5 \u2013 Dec 31, 2026",
+   "one_liner": "Build the habit before the program.",
+   "what_done_looks_like": "Three runs a week since India, every run easy, long run at 5 miles, two lifts a week locked in.",
+   "template": {
+    "Mon": "Easy run 3",
+    "Tue": "Lift A",
+    "Wed": "Easy run 3",
+    "Thu": "Lift B",
+    "Fri": "Long run (3.5 \u2192 5)",
+    "Sat": "Off",
+    "Sun": "Optional easy 2\u20133"
+   },
+   "rule": "Every run is easy. If you see a 7 or an 8 on the watch, slow down."
+  },
+  {
+   "id": 1,
+   "name": "The Course",
+   "dates": "Jan 1 \u2013 Jun 26, 2027",
+   "one_liner": "Six months. Build the runner and the body.",
+   "what_done_looks_like": "Half-marathon fit with hills in the legs, three-day hypertrophy program running, four start lines behind you, Glacier finished and enjoyed.",
+   "template": {
+    "Mon": "Easy run",
+    "Tue": "Lift \u00b7 Lower",
+    "Wed": "Strides (Jan) \u2192 one workout (Feb on)",
+    "Thu": "Lift \u00b7 Upper",
+    "Fri": "Long run",
+    "Sat": "Off (swim optional from mid-March)",
+    "Sun": "Lift \u00b7 Full (+ short easy run from Feb)"
+   },
+   "blocks": [
+    {
+     "name": "Foundation",
+     "dates": "Jan 1 \u2013 Feb 7",
+     "mileage": "13 \u2192 17",
+     "long_run": "5 \u2192 7",
+     "lifts": 3,
+     "note": "Strides Wednesdays. 5K time trial Jan 20 sets every pace."
+    },
+    {
+     "name": "Build",
+     "dates": "Feb 8 \u2013 Mar 21",
+     "mileage": "17 \u2192 22",
+     "long_run": "7 \u2192 9",
+     "lifts": 3,
+     "note": "Fourth run (Sunday). Wednesday workout. Hills introduced Mar 10. Spring break Mar 13\u201320 is the deload."
+    },
+    {
+     "name": "Hills",
+     "dates": "Mar 22 \u2013 May 8",
+     "mileage": "22 \u2192 28",
+     "long_run": "9 \u2192 12",
+     "lifts": 3,
+     "note": "Long runs go find hills. 10-Miler Apr 10. Indy Mini May 8 as the dress rehearsal."
+    },
+    {
+     "name": "Peak & Taper",
+     "dates": "May 9 \u2013 Jun 26",
+     "mileage": "26 \u2192 29 \u2192 taper",
+     "long_run": "11, 12, 12, 11 \u2192 7 \u2192 race",
+     "lifts": "3 until May 30, then 2",
+     "note": "Home in Brownsburg. Early mornings. Two-week taper. Drive west Jun 23\u201324."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "The Marathon",
+   "dates": "Jun 27 \u2013 Nov 6, 2027",
+   "one_liner": "Recover, rebuild in the heat, then 16, 18, 20, taper, Monumental.",
+   "what_done_looks_like": "You crossed the finish line of a marathon. A year ago your longest run was a 5K.",
+   "template": {
+    "Mon": "Easy run",
+    "Tue": "Lift \u00b7 Lower (+ short run from Aug 23)",
+    "Wed": "Workout",
+    "Thu": "Lift \u00b7 Upper",
+    "Fri": "Long run",
+    "Sat": "Off",
+    "Sun": "Easy run (+ Lift \u00b7 Full through Aug 22)"
+   },
+   "blocks": [
+    {
+     "name": "Recover",
+     "dates": "Jun 27 \u2013 Jul 11",
+     "mileage": "7 \u2192 12",
+     "long_run": "\u2014",
+     "lifts": 3,
+     "note": "Easy only. Push the lifting \u2014 this is the summer muscle window."
+    },
+    {
+     "name": "Summer Base",
+     "dates": "Jul 12 \u2013 Aug 22",
+     "mileage": "25 \u2192 34",
+     "long_run": "10 \u2192 14",
+     "lifts": 3,
+     "note": "Run by 7 AM. Heat rule: effort, not pace. B&O Trail long runs."
+    },
+    {
+     "name": "Marathon Build",
+     "dates": "Aug 23 \u2013 Sep 26",
+     "mileage": "35 \u2192 40",
+     "long_run": "14, 16, 12, 16",
+     "lifts": 2,
+     "note": "Back at IU. Five runs. Mill Race half Sep 25, controlled."
+    },
+    {
+     "name": "Peak",
+     "dates": "Sep 27 \u2013 Oct 24",
+     "mileage": "29, 41, 40, 32",
+     "long_run": "12, 18, 20, 14",
+     "lifts": 2,
+     "note": "The 20-miler on Oct 15 is the most important run of the year."
+    },
+    {
+     "name": "Taper",
+     "dates": "Oct 25 \u2013 Nov 6",
+     "mileage": "25 \u2192 race week",
+     "long_run": "10 \u2192 26.2",
+     "lifts": "1 light, then none",
+     "note": "You'll feel heavy and nervous. That's the taper working."
+    }
+   ]
+  }
+ ],
+ "pace_engine": {
+  "description": "All paces derive from one number: the athlete's most recent all-out 5K time in seconds. Until the Jan 20 time trial, use the baseline placeholder and label every pace 'estimated'. When a new 5K time is entered, every session in the plan re-renders.",
+  "input": {
+   "field": "five_k_seconds",
+   "default": 1382,
+   "default_label": "estimated (trail 5K, not all-out)"
+  },
+  "formulas": {
+   "p5k_sec_per_mile": "five_k_seconds / 3.10686",
+   "riegel_time": "T2 = T1 * (D2 / D1) ** 1.06   # D in miles; T1 = five_k_seconds, D1 = 3.10686",
+   "zones_sec_per_mile": {
+    "easy": [
+     "p5k * 1.30",
+     "p5k * 1.40"
+    ],
+    "long": [
+     "p5k * 1.32",
+     "p5k * 1.45"
+    ],
+    "tempo": [
+     "p5k * 1.10",
+     "p5k * 1.15"
+    ],
+    "hm": [
+     "riegel_time(13.1094) / 13.1094 * 1.00",
+     "riegel_time(13.1094) / 13.1094 * 1.03"
+    ],
+    "mp": [
+     "riegel_time(26.2188) / 26.2188 * 1.08",
+     "riegel_time(26.2188) / 26.2188 * 1.15"
+    ],
+    "tt": [
+     "all-out: show last 5K pace as the reference, target 'faster than last time'"
+    ],
+    "hills": [
+     "effort-based: show 'strong effort, tall posture, quick steps' \u2014 no pace"
+    ],
+    "strides": [
+     "effort-based: 'fast but relaxed, 20 seconds' \u2014 no pace"
+    ],
+    "shakeout": [
+     "same as easy"
+    ]
+   },
+   "marathon_note": "The marathon zone is deliberately conservative for a first marathon (Riegel + 8\u201315%). Mile 20 is where the race starts.",
+   "treadmill_mph": "60 / (sec_per_mile / 60)   # e.g. 10:00/mi \u2192 6.0 mph. Show the slower end of the zone as the treadmill setting.",
+   "display": "Show zones as 'm:ss \u2013 m:ss /mi' plus '(treadmill X.X mph)' for easy/long. Round to 5-second increments."
+  },
+  "worked_example_22_00_5k": {
+   "p5k": "7:05/mi",
+   "easy": "9:10 \u2013 9:55 /mi (treadmill 6.0\u20136.5 mph)",
+   "long": "9:20 \u2013 10:15 /mi",
+   "tempo": "7:45 \u2013 8:10 /mi",
+   "hm": "7:45 \u2013 7:55 /mi",
+   "mp": "8:40 \u2013 9:15 /mi"
+  },
+  "talk_test_fallback": "If no 5K time is set, every easy/long run says: 'Talk test. Full sentences. Treadmill 6.0 mph.'"
+ },
+ "lift_programs": {
+  "general": {
+   "rep_in_reserve": "Stop every set with 2\u20133 reps left. If you finish 10 and could do 15, add weight next set. If rep 8 gets ugly, take weight off.",
+   "first_session": "Barbell lifts: empty bar warm-up, then +10\u201320 lb per set until it feels like work. Dumbbells: a weight you could do 15 of, do 10. Lat pulldown: start around half bodyweight. Err light.",
+   "progression": "Hit the top of the rep range on all sets with reps in reserve \u2192 add 5 lb to upper-body lifts, 10 lb to lower-body lifts next session. Can't get 8 on the last set \u2192 stay.",
+   "light_week": "Deload / race week: 2 sets per exercise, same weights.",
+   "soreness": "First two weeks back you'll be sore more than expected. Normal. Do the easy run anyway \u2014 it helps.",
+   "log": "Write every weight down after every session. Week 1 is calibration.",
+   "learning": "Aakash learns by watching, then copying. Every exercise card gets a 'watch' button that opens a video search for the movement."
+  },
+  "P0_A": {
+   "title": "Lift A \u2014 full body",
+   "phase": 0,
+   "duration_min": 35,
+   "exercises": [
+    {
+     "name": "Goblet squat (or light barbell back squat)",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "60\u201390s",
+     "note": "Sit between the heels. Chest up.",
+     "home_variant": "Barbell back squat, light",
+     "video_query": "Goblet squat (or light barbell back squat) proper form"
+    },
+    {
+     "name": "Romanian deadlift (barbell or dumbbells)",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "60\u201390s",
+     "note": "Hips back, bar close, flat back. Hamstrings, not lower back.",
+     "home_variant": null,
+     "video_query": "Romanian deadlift (barbell or dumbbells) proper form"
+    },
+    {
+     "name": "Dumbbell bench press",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "60\u201390s",
+     "note": "Elbows ~45\u00b0, not flared.",
+     "home_variant": null,
+     "video_query": "Dumbbell bench press proper form"
+    },
+    {
+     "name": "One-arm dumbbell row",
+     "sets": 3,
+     "reps": "10 per arm",
+     "rest": "60\u201390s",
+     "note": "Pull to the hip, squeeze the back.",
+     "home_variant": null,
+     "video_query": "One-arm dumbbell row proper form"
+    },
+    {
+     "name": "Plank",
+     "sets": 3,
+     "reps": "40\u201360 sec",
+     "rest": "45s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Plank proper form"
+    }
+   ]
+  },
+  "P0_B": {
+   "title": "Lift B \u2014 full body",
+   "phase": 0,
+   "duration_min": 35,
+   "exercises": [
+    {
+     "name": "Split squat (bodyweight \u2192 dumbbells)",
+     "sets": 3,
+     "reps": "8 per leg",
+     "rest": "60\u201390s",
+     "note": "Rear foot on the floor for now. Bulgarian comes in Phase 1.",
+     "home_variant": null,
+     "video_query": "Split squat (bodyweight \u2192 dumbbells) proper form"
+    },
+    {
+     "name": "Overhead press (barbell or dumbbells)",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "60\u201390s",
+     "note": "Squeeze glutes, don't lean back.",
+     "home_variant": null,
+     "video_query": "Overhead press (barbell or dumbbells) proper form"
+    },
+    {
+     "name": "Lat pulldown (or pull-ups / banded pull-ups)",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": "Pull-ups on the rack or inverted rows under the bar",
+     "video_query": "Lat pulldown (or pull-ups / banded pull-ups) proper form"
+    },
+    {
+     "name": "Incline dumbbell press",
+     "sets": 3,
+     "reps": "10",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Incline dumbbell press proper form"
+    },
+    {
+     "name": "Standing calf raise",
+     "sets": 3,
+     "reps": "15",
+     "rest": "45s",
+     "note": "Full stretch at the bottom, pause at the top. Runners' insurance.",
+     "home_variant": null,
+     "video_query": "Standing calf raise proper form"
+    },
+    {
+     "name": "Side plank",
+     "sets": 2,
+     "reps": "30 sec per side",
+     "rest": "30s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Side plank proper form"
+    }
+   ]
+  },
+  "LOWER": {
+   "title": "Lower \u2014 squat, hinge, single-leg",
+   "phase": 1,
+   "duration_min": 50,
+   "exercises": [
+    {
+     "name": "Barbell back squat",
+     "sets": 3,
+     "reps": "6\u20138",
+     "rest": "2\u20133 min",
+     "note": "The main lift. Add 10 lb when all sets hit 8 with reps to spare.",
+     "home_variant": null,
+     "video_query": "Barbell back squat proper form"
+    },
+    {
+     "name": "Romanian deadlift",
+     "sets": 3,
+     "reps": "8",
+     "rest": "2 min",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Romanian deadlift proper form"
+    },
+    {
+     "name": "Bulgarian split squat",
+     "sets": 3,
+     "reps": "8 per leg",
+     "rest": "90s",
+     "note": "Rear foot on a bench. Glacier insurance.",
+     "home_variant": null,
+     "video_query": "Bulgarian split squat proper form"
+    },
+    {
+     "name": "Leg curl (machine)",
+     "sets": 3,
+     "reps": "10\u201312",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": "Nordic curl negatives or hamstring sliders",
+     "video_query": "Leg curl (machine) proper form"
+    },
+    {
+     "name": "Standing calf raise",
+     "sets": 4,
+     "reps": "12",
+     "rest": "45s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Standing calf raise proper form"
+    },
+    {
+     "name": "Plank",
+     "sets": 3,
+     "reps": "45\u201360 sec",
+     "rest": "45s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Plank proper form"
+    }
+   ]
+  },
+  "UPPER": {
+   "title": "Upper \u2014 bench, row, press, pull",
+   "phase": 1,
+   "duration_min": 50,
+   "exercises": [
+    {
+     "name": "Barbell bench press",
+     "sets": 3,
+     "reps": "6\u20138",
+     "rest": "2\u20133 min",
+     "note": "The main lift. Add 5 lb when all sets hit 8 with reps to spare.",
+     "home_variant": null,
+     "video_query": "Barbell bench press proper form"
+    },
+    {
+     "name": "Barbell row",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "2 min",
+     "note": "Hinged, flat back, bar to the lower ribs.",
+     "home_variant": null,
+     "video_query": "Barbell row proper form"
+    },
+    {
+     "name": "Overhead press",
+     "sets": 3,
+     "reps": "8",
+     "rest": "2 min",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Overhead press proper form"
+    },
+    {
+     "name": "Lat pulldown (or pull-ups)",
+     "sets": 3,
+     "reps": "8\u201310",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": "Pull-ups on the rack; add reps before weight",
+     "video_query": "Lat pulldown (or pull-ups) proper form"
+    },
+    {
+     "name": "Dumbbell lateral raise",
+     "sets": 3,
+     "reps": "12\u201315",
+     "rest": "60s",
+     "note": "Light. Shoulders are where 'athletic' lives.",
+     "home_variant": null,
+     "video_query": "Dumbbell lateral raise proper form"
+    },
+    {
+     "name": "Dumbbell curl",
+     "sets": 2,
+     "reps": "12",
+     "rest": "60s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Dumbbell curl proper form"
+    },
+    {
+     "name": "Triceps pushdown (or bench dips)",
+     "sets": 2,
+     "reps": "12",
+     "rest": "60s",
+     "note": null,
+     "home_variant": "Bench dips or close-grip push-ups",
+     "video_query": "Triceps pushdown (or bench dips) proper form"
+    }
+   ]
+  },
+  "FULL": {
+   "title": "Full body \u2014 deadlift, press, row",
+   "phase": 1,
+   "duration_min": 50,
+   "exercises": [
+    {
+     "name": "Trap-bar deadlift (or conventional, light)",
+     "sets": 3,
+     "reps": "6",
+     "rest": "2\u20133 min",
+     "note": "Learn it light. Hips and hamstrings, bar close, stand up tall.",
+     "home_variant": "Conventional barbell deadlift, light",
+     "video_query": "Trap-bar deadlift (or conventional, light) proper form"
+    },
+    {
+     "name": "Incline dumbbell press",
+     "sets": 3,
+     "reps": "10",
+     "rest": "90s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Incline dumbbell press proper form"
+    },
+    {
+     "name": "Single-arm dumbbell row",
+     "sets": 3,
+     "reps": "10 per arm",
+     "rest": "90s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Single-arm dumbbell row proper form"
+    },
+    {
+     "name": "Leg press (or goblet squat)",
+     "sets": 3,
+     "reps": "12",
+     "rest": "90s",
+     "note": null,
+     "home_variant": "Goblet squat with the heaviest dumbbell",
+     "video_query": "Leg press (or goblet squat) proper form"
+    },
+    {
+     "name": "Face pulls (cable or band)",
+     "sets": 3,
+     "reps": "15",
+     "rest": "45s",
+     "note": "Posture and shoulder health for a runner who sits in class all day.",
+     "home_variant": "Band pull-aparts",
+     "video_query": "Face pulls (cable or band) proper form"
+    },
+    {
+     "name": "Hanging knee raise",
+     "sets": 3,
+     "reps": "10\u201312",
+     "rest": "60s",
+     "note": null,
+     "home_variant": "Lying leg raises",
+     "video_query": "Hanging knee raise proper form"
+    }
+   ]
+  },
+  "FULL_LIGHT": {
+   "title": "Full body \u2014 light (taper)",
+   "phase": "1\u20132",
+   "duration_min": 30,
+   "exercises": [
+    {
+     "name": "Goblet squat",
+     "sets": 2,
+     "reps": "10",
+     "rest": "60\u201390s",
+     "note": "Light. Movement, not effort.",
+     "home_variant": null,
+     "video_query": "Goblet squat proper form"
+    },
+    {
+     "name": "Dumbbell bench press",
+     "sets": 2,
+     "reps": "10",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Dumbbell bench press proper form"
+    },
+    {
+     "name": "Single-arm dumbbell row",
+     "sets": 2,
+     "reps": "10 per arm",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Single-arm dumbbell row proper form"
+    },
+    {
+     "name": "Plank",
+     "sets": 2,
+     "reps": "40 sec",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Plank proper form"
+    }
+   ]
+  },
+  "bodyweight_fallback": {
+   "title": "No bar, no problem (spring break / travel)",
+   "exercises": [
+    {
+     "name": "Split squat",
+     "sets": 3,
+     "reps": "12 per leg",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Split squat proper form"
+    },
+    {
+     "name": "Push-ups",
+     "sets": 3,
+     "reps": "max-2",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Push-ups proper form"
+    },
+    {
+     "name": "Glute bridge",
+     "sets": 3,
+     "reps": "15",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Glute bridge proper form"
+    },
+    {
+     "name": "Inverted row (table or bar)",
+     "sets": 3,
+     "reps": "10",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Inverted row (table or bar) proper form"
+    },
+    {
+     "name": "Pike push-ups",
+     "sets": 3,
+     "reps": "8",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Pike push-ups proper form"
+    },
+    {
+     "name": "Plank + side plank",
+     "sets": 2,
+     "reps": "45s / 30s each",
+     "rest": "60\u201390s",
+     "note": null,
+     "home_variant": null,
+     "video_query": "Plank + side plank proper form"
+    }
+   ]
+  }
+ },
+ "nutrition": {
+  "principle": "Three real meals, protein at each, eat in the morning. No numbers, no tracking \u2014 unless you want to log.",
+  "the_loop": "Up until 2 \u2192 wake at 10 \u2192 first meal at 2 PM \u2192 dinner at 7 \u2192 hungry at midnight \u2192 DoorDash \u2192 up until 2. Fix the wake time and the rest moves.",
+  "breakfast": {
+   "where": "McNutt",
+   "what": "Scrambled eggs + sausage links (the protein) + tater tots + a piece of fruit or a glass of milk",
+   "when": "Within an hour of waking, after the run on run days"
+  },
+  "lunch_dinner": {
+   "where": "McNutt",
+   "what": "Chicken, rice, corn, avocado \u2014 the plate that already works. Keep it.",
+   "note": "Add a second scoop of rice on long-run days and the two days before a race."
+  },
+  "late_night": {
+   "rule": "Nothing after 10 PM on Sun\u2013Wed. On Thu\u2013Sat, room food only \u2014 never an app.",
+   "costco_list": [
+    "Greek yogurt or cottage cheese",
+    "String cheese, beef jerky, turkey sticks",
+    "Protein bars (15g+ protein, not candy)",
+    "Bananas, apples, clementines",
+    "Microwave popcorn",
+    "Milk or chocolate milk (best post-run recovery drink in the building)",
+    "Oats + peanut butter"
+   ]
+  },
+  "run_fueling": {
+   "under_60_min": "Nothing needed. Water if hot.",
+   "60_to_75_min": "Water. Eat within an hour after.",
+   "over_75_min": "A gel or chews every 30\u201340 minutes, starting at ~40 min. Water every 2 miles. Practice this on every long run from March so race day has no surprises.",
+   "race_morning": "Light breakfast 2\u20133 hours before: toast + banana, or a bagel + peanut butter. Nothing new. Coffee if you normally have it.",
+   "race_week": "Carbs at every meal from three days out: rice, pasta, bread, potatoes. Not more food \u2014 more carbs.",
+   "after_long_runs": "Chocolate milk or a real meal within an hour. Then eat normally for the rest of the day, plus a snack."
+  },
+  "muscle_note": "You can't build muscle in a calorie deficit. Lifting three days a week while running means three real meals is the floor, not the ceiling. If the lifts stall for three weeks straight, the fix is usually more food, not more sets."
+ },
+ "sleep": {
+  "wake_time": {
+   "Mon\u2013Thu": "7:30",
+   "Fri\u2013Sun": "8:30"
+  },
+  "bedtime": "Flexes. Earlier Sun\u2013Wed nights, later Thu\u2013Sat. Bedtime is almost impossible to force; wake time you can set with an alarm, and after a week or two bedtime drifts earlier on its own.",
+  "guardrails": [
+   "8:30 is the ceiling, not a suggestion. Sleep till 11 on Saturday and Monday's 7:30 becomes a fight again.",
+   "Late nights Thu\u2013Sat are fine as long as the wake time holds. Push the Friday long run to 10 or 11 if needed \u2014 don't skip it.",
+   "Under 5 hours of sleep: do the easy stuff as planned, swap any hard day for easy."
+  ],
+  "reset": "The India trip is the free reset: land Nov 25, alarm at 7:30 from Nov 26, hold it through Thanksgiving, on the new clock by Nov 30.",
+  "morning_sequence": "Alarm \u2192 run (or lift) \u2192 shower \u2192 McNutt breakfast \u2192 class at 11:10. One sequence rebuilds the whole day.",
+  "data": "Apple Watch sleep lives in the Health app. Screenshot the weekly chart for Sunday check-ins; Pacer logs hours manually if you want the streak."
+ },
+ "rules": [
+  {
+   "n": 1,
+   "name": "Pain",
+   "text": "Dull, general soreness that fades as you warm up: run easy. Sharp pain, one specific spot, or pain that gets worse as you run: stop that run. 2\u20133 days off running (lifting fine if it doesn't hurt), then test easy. Still there after a week, or you're limping or changing stride: get it looked at (IU Student Health Center). Never run through pain that changes your stride."
+  },
+  {
+   "n": 2,
+   "name": "Sick",
+   "text": "Above the neck (runny nose, sore throat): easy session fine if you feel like it. Below the neck (chest, fever, body aches): full rest until 24 hours after symptoms clear, then restart easy. Don't make up missed days."
+  },
+  {
+   "n": 3,
+   "name": "Missed days",
+   "text": "1\u20133 days: pick up where the plan is, nothing made up. A whole week: repeat the previous week. Two or more: tell Claude, the next stretch gets rebuilt. Making up missed work is the number one way people get hurt."
+  },
+  {
+   "n": 4,
+   "name": "Bad sleep",
+   "text": "Under five hours: do the easy stuff as planned, swap any hard day (workout, long run, heavy lower) for easy. The plan bends; it doesn't break."
+  },
+  {
+   "n": 5,
+   "name": "Exam weeks",
+   "text": "Minimum viable week: two runs and one lift. Never zero. Twenty minutes still counts."
+  },
+  {
+   "n": 6,
+   "name": "The 10-minute rule",
+   "text": "When you don't want to go: ten minutes. Get out the door, start, and if after ten minutes you still want to stop, stop and it counts. You'll almost never stop. The hard part is the first step, not the workout \u2014 and this rule only asks for the first step."
+  },
+  {
+   "n": 7,
+   "name": "Pickleball & basketball",
+   "text": "They stay. They're also the most likely place you get hurt \u2014 rolled ankles especially. If that happens, Rule 1 applies. On lift days, don't play hard right before you lift."
+  }
+ ],
+ "sunday_check_in": {
+  "when": "Sunday evening",
+  "how": "Message Claude. One word is fine.",
+  "claude_pulls_from_strava": [
+   "number of runs",
+   "total miles vs planned",
+   "were easy runs actually easy",
+   "did the long run happen",
+   "relative effort trend (recovery)"
+  ],
+  "you_report": [
+   "body 1\u201310",
+   "sleep this week",
+   "anything coming next week \u2014 exams, travel, a known late night"
+  ],
+  "you_get": "A short read on the week and the week ahead, with adjustments. Ten minutes.",
+  "monthly": "First Sunday of the month: mileage trend, lifting numbers, PBs, how you feel about how you look (optional).",
+  "pacer_export": "Pacer's 'Budget vs. Actual' screen for the week should be one screenshot away so you can send it."
+ },
+ "gear": [
+  {
+   "item": "Running shoes",
+   "when": "Now (Vomeros) + a second pair in February",
+   "note": "Daily trainers, two pairs, rotated. ~300\u2013400 miles each. Track per pair. No carbon, no 'stability' shoes someone online swears by."
+  },
+  {
+   "item": "Running socks \u00d73",
+   "when": "Now",
+   "note": "Not cotton. Blisters are a sock problem."
+  },
+  {
+   "item": "Winter kit",
+   "when": "December",
+   "note": "Tights, long-sleeve base layer, light wind jacket, gloves, beanie. Dress for 15\u201320\u00b0F warmer than it is."
+  },
+  {
+   "item": "Clip-on light / reflective vest",
+   "when": "December",
+   "note": "January morning runs start in the dark. $10."
+  },
+  {
+   "item": "Anti-chafe balm",
+   "when": "When long runs pass 8 miles (Feb)",
+   "note": "You'll learn why the first time you forget it."
+  },
+  {
+   "item": "Flat shoes for lifting",
+   "when": "Now",
+   "note": "Converse, Vans, or socks on the platform. Squatting in running shoes is squatting on a mattress."
+  },
+  {
+   "item": "Gels / chews",
+   "when": "March",
+   "note": "Practice on long runs. Find the one your stomach likes before May."
+  },
+  {
+   "item": "Handheld bottle",
+   "when": "May",
+   "note": "Summer long runs."
+  },
+  {
+   "item": "Foam roller",
+   "when": "Optional",
+   "note": "Cheap, useful, not required."
+  }
+ ],
+ "swimming": {
+  "starts": "Mid-March (Week 11), one 20\u201330 min session a week on Saturday or Sunday",
+  "first_session": "Quiet hour at the SRSC pool (weekday late morning or early afternoon). Float, kick with a board, swim a length, rest, repeat. No plan. Nobody is watching.",
+  "fast_path": "IU Rec Sports usually offers adult swim lessons for a modest fee. A short block in spring is the quickest way from 'can't do freestyle laps' to 'can'.",
+  "why": "Zero impact, helps recovery, and it's groundwork for the Ironman in ~2031. Not a performance target."
+ },
+ "races": [
+  {
+   "date": "2027-01-20",
+   "name": "5K time trial (solo)",
+   "distance_mi": 3.1,
+   "where": "Flat loop or SRSC track, Bloomington",
+   "role": "Sets every pace for the year",
+   "status": "planned"
+  },
+  {
+   "date": "2027-02-13",
+   "name": "500 Festival 3-Miler",
+   "distance_mi": 3,
+   "where": "Indianapolis",
+   "role": "Optional pace check",
+   "status": "optional",
+   "url": "https://indymini.com"
+  },
+  {
+   "date": "2027-03-13",
+   "name": "500 Festival 6-Miler",
+   "distance_mi": 6,
+   "where": "Indianapolis",
+   "role": "Optional, first day of spring break",
+   "status": "optional",
+   "url": "https://indymini.com"
+  },
+  {
+   "date": "2027-04-10",
+   "name": "500 Festival 10-Miler",
+   "distance_mi": 10,
+   "where": "Indianapolis",
+   "role": "First double-digit race, Mini rehearsal",
+   "status": "recommended",
+   "url": "https://indymini.com"
+  },
+  {
+   "date": "2027-05-08",
+   "name": "IU Health 500 Festival Mini-Marathon",
+   "distance_mi": 13.1,
+   "where": "Downtown Indianapolis + a lap of the Speedway",
+   "role": "Full dress rehearsal, 7 weeks before Glacier",
+   "status": "register now \u2014 cheapest right now",
+   "url": "https://indymini.com",
+   "start": "7:30 AM"
+  },
+  {
+   "date": "2027-06-26",
+   "name": "Glacier Half Marathon",
+   "distance_mi": 13.1,
+   "where": "Kiowa \u2192 Two Medicine \u2192 Glacier Park Lodge, East Glacier MT",
+   "role": "Phase 1 finish line",
+   "status": "register in the next week or two (~$155, rising; payment plans available)",
+   "url": "https://vacationraces.com/half-marathons/glacier/",
+   "start": "6:00 AM MDT",
+   "course": "Point-to-point, first 5 miles uphill, ~1,200 ft total climb, high elevation, 5 aid stations, 4-hour cutoff"
+  },
+  {
+   "date": "2027-09-25",
+   "name": "Mill Race Half Marathon",
+   "distance_mi": 13.1,
+   "where": "Downtown Columbus, IN (1 hr from Bloomington)",
+   "role": "Marathon tune-up, run controlled",
+   "status": "register when it opens",
+   "start": "7:30 AM",
+   "course": "Flat, fast, certified loop; shaded People Trails; small field"
+  },
+  {
+   "date": "2027-11-06",
+   "name": "CNO Financial Indianapolis Monumental Marathon",
+   "distance_mi": 26.2,
+   "where": "Indiana State House, downtown Indianapolis",
+   "role": "THE GOAL",
+   "status": "register when it opens (date expected \u2014 first Saturday of November)",
+   "url": "https://monumentalmarathon.com",
+   "start": "8:00 AM",
+   "course": "Flat, fast, top-15 largest US marathon, cool weather, family on the course"
+  }
+ ],
+ "key_dates": [
+  {
+   "date": "2026-11-06",
+   "what": "Kelley Prompt-A-Thon"
+  },
+  {
+   "date": "2026-11-09",
+   "what": "Accounting exam"
+  },
+  {
+   "date": "2026-11-14",
+   "what": "Fly to India"
+  },
+  {
+   "date": "2026-11-25",
+   "what": "Land Chicago 7:55 AM"
+  },
+  {
+   "date": "2026-11-26",
+   "what": "Thanksgiving"
+  },
+  {
+   "date": "2026-11-28",
+   "what": "Purdue at IU"
+  },
+  {
+   "date": "2026-11-30",
+   "what": "Classes resume"
+  },
+  {
+   "date": "2026-12-12",
+   "what": "Last day of classes"
+  },
+  {
+   "date": "2026-12-14",
+   "what": "Finals week begins (through Dec 18)"
+  },
+  {
+   "date": "2026-12-17",
+   "what": "PSY final 12:40"
+  },
+  {
+   "date": "2026-12-18",
+   "what": "Winter break begins \u2014 Brownsburg"
+  },
+  {
+   "date": "2027-01-01",
+   "what": "Phase 1 begins"
+  },
+  {
+   "date": "2027-01-11",
+   "what": "Spring classes begin (nothing before 11:10; Fridays free)"
+  },
+  {
+   "date": "2027-01-18",
+   "what": "MLK Day"
+  },
+  {
+   "date": "2027-03-13",
+   "what": "Spring break (through Mar 20) \u2014 location TBD"
+  },
+  {
+   "date": "2027-05-03",
+   "what": "Spring finals (through May 7)"
+  },
+  {
+   "date": "2027-05-07",
+   "what": "Home for summer \u2014 Brownsburg"
+  },
+  {
+   "date": "2027-06-23",
+   "what": "Drive to Glacier (2 days)"
+  },
+  {
+   "date": "2027-08-23",
+   "what": "Fall classes likely begin (confirm)"
+  },
+  {
+   "date": "2027-11-05",
+   "what": "Monumental expo / packet pickup"
+  }
+ ],
+ "habits": {
+  "daily": [
+   {
+    "key": "wake_time",
+    "label": "Up on time",
+    "detail": "7:30 Mon\u2013Thu \u00b7 8:30 Fri\u2013Sun",
+    "starts": "2026-11-26"
+   },
+   {
+    "key": "breakfast",
+    "label": "Breakfast",
+    "detail": "Within an hour of waking"
+   },
+   {
+    "key": "three_meals",
+    "label": "Three real meals",
+    "detail": "Protein at each"
+   },
+   {
+    "key": "no_late_food",
+    "label": "No late-night order",
+    "detail": "Room food only after 10"
+   }
+  ],
+  "streak_rule": "A day counts when every scheduled session is checked and at least 3 of 4 habits are hit. Rest days count when habits are hit. India days always count (nothing was scheduled).",
+  "custom_log": {
+   "description": "Aakash can add his own entries any day. Each entry: type, free text, optional number + unit, timestamp.",
+   "types": [
+    "Food (what I ate)",
+    "Sleep (hours, how I feel)",
+    "Pickleball / basketball (minutes)",
+    "Body (how it feels 1\u201310, any niggles)",
+    "Weight (optional, only if he wants it)",
+    "Note (anything)"
+   ],
+   "rule": "Custom logs never affect the streak. They're for him and for Sunday check-ins."
+  }
+ },
+ "easter_eggs": {
+  "principle": "Dry, specific, and his. Never cheesy. Rotate deterministically by date so the same day shows the same line. His own Strava captions are quoted back as his own words.",
+  "his_own_words": [
+   {
+    "text": "\"I wanted to go 4 but I lost the mental battle today. Tomorrow's a new day.\"",
+    "source": "you, Oct 29, 2026",
+    "show_on": "the day after a missed session"
+   },
+   {
+    "text": "\"Decided to keep going.\"",
+    "source": "your run title, Oct 28, 2026",
+    "show_on": "the 10-minute rule screen"
+   },
+   {
+    "text": "\"Gorgeous ending.\"",
+    "source": "you, Oct 28, 2026",
+    "show_on": "finish of any long run"
+   },
+   {
+    "text": "\"Saw an old couple fishing and it warmed my heart a little.\"",
+    "source": "you, Griffy Lake, Oct 28, 2026",
+    "show_on": "any Griffy route day"
+   },
+   {
+    "text": "\"Felt good in the new Vomeros.\"",
+    "source": "you, Oct 28, 2026",
+    "show_on": "shoe tracker"
+   },
+   {
+    "text": "\"Calm 5k. A lot of it was uphill I feel like but it felt good.\"",
+    "source": "you, Oct 28, 2026",
+    "show_on": "first hill workout"
+   }
+  ],
+  "rotating": {
+   "easy_run": [
+    "If the watch says 7-something, that's the old you. Wave and slow down.",
+    "Easy means you could tell someone about DinkIQ the whole way and never lose your breath.",
+    "Nothing before 11:10. The morning is yours. Run, shower, eggs, class.",
+    "8 laps = 1 mile. 24 laps and you're done. Don't count. Just run.",
+    "Section E is a mile and a half from the Arboretum loop. The run starts at the car if you want it to.",
+    "The B&O Trail at 6:30 AM is the best place in Hendricks County, and nobody's on it.",
+    "You've been a hybrid since 2017. The RAV4 gets it.",
+    "Slow runs are the budget. Fast runs are the spending. You know which one comes first."
+   ],
+   "long_run": [
+    "Slow is the point. This should feel boring for the first half. Boring is the plan working.",
+    "Fuel at 40 minutes, not when you feel bad. By then it's late.",
+    "Red River Gorge was the trip you didn't take. Glacier is the one you will. This run is how.",
+    "Last October your longest run was a 5K. Look at the number on this card.",
+    "Every long run is a deposit. Monumental is the withdrawal."
+   ],
+   "workout": [
+    "Comfortably hard: a few words at a time. Not a grunt. Not a speech.",
+    "Fast Lane. 23 months of it. Now it's 20 seconds at a time.",
+    "This is the one run a week where you look at the watch. Make it count, then forget it.",
+    "Hills: tall posture, quick steps, drive the arms. Glacier climbs for five miles. Today you climb for one."
+   ],
+   "lift": [
+    "Two years of daily racks don't vanish. The bar remembers you.",
+    "Scale it: hit the top of the range with reps to spare, add weight. That's the whole business model.",
+    "Shoulders are where 'athletic' lives. Don't skip the lateral raises.",
+    "Write it down. Week one is calibration. Week eight is the proof.",
+    "Soft hands. Hard data. Log the numbers.",
+    "The SRSC at 8 AM is empty. The rack is yours."
+   ],
+   "rest": [
+    "Rest is where the adaptation happens. You did the work. Let it land.",
+    "Saturday is off. It's not a suggestion. Go watch the Hoosiers.",
+    "A rest day with the habits hit still counts. Streak lives.",
+    "Nothing to do today except eat three real meals and go to bed on time. Hardest workout of the week for some people."
+   ],
+   "missed": [
+    "Tomorrow's a new day. You said it first.",
+    "Nothing gets made up. The plan picks up where it is. That's Rule 3, and it's the rule that keeps you healthy.",
+    "One missed day is a data point. Two is a pattern. Three is a message to Claude."
+   ],
+   "morning": [
+    "7:30. Alarm, shoes, out. Decide nothing. The decision was made on Nov 5.",
+    "McNutt opens before you do. Eggs, sausage, tots, done by 9.",
+    "The hard part is the first step. Ten minutes. Then see."
+   ],
+   "streak": {
+    "7": "One week. Cadre scholarship was 1 of 30. This is 7 of 7.",
+    "14": "Two weeks. Most January plans die here. It's not January.",
+    "30": "Thirty days. You just outlasted every resolution in Briscoe.",
+    "50": "Fifty. Project RAISE took a year of weekly budget-vs-actual reviews. This is the same muscle.",
+    "100": "One hundred days. Nobody who knew you in October would recognize this number.",
+    "200": "Two hundred. The marathon is now a logistics problem, not a fitness problem.",
+    "365": "A year. Cross the line."
+   }
+  },
+  "badges": [
+   {
+    "key": "slow_one",
+    "name": "The Slow One",
+    "unlock": "Complete Nov 8, 2026",
+    "desc": "You ran 3 miles slow on purpose. Everything starts here."
+   },
+   {
+    "key": "bar_remembers",
+    "name": "The Bar Remembers",
+    "unlock": "First lift logged",
+    "desc": "First barbell since BHS."
+   },
+   {
+    "key": "section_e",
+    "name": "Section E",
+    "unlock": "10 runs logged",
+    "desc": "Ten runs from the stadium lot."
+   },
+   {
+    "key": "eight_laps",
+    "name": "8 Laps",
+    "unlock": "First SRSC indoor track run",
+    "desc": "Winter didn't stop you."
+   },
+   {
+    "key": "griffy",
+    "name": "Griffy",
+    "unlock": "First 5-mile run",
+    "desc": "Out to the lake and back."
+   },
+   {
+    "key": "reset",
+    "name": "The Reset",
+    "unlock": "7 straight wake-times hit after Nov 26",
+    "desc": "India fixed your clock. You kept it."
+   },
+   {
+    "key": "phase1",
+    "name": "Moving Train",
+    "unlock": "Phase 0 complete with 3 runs/week since India",
+    "desc": "Jan 1 and you were already running."
+   },
+   {
+    "key": "tt",
+    "name": "The Number",
+    "unlock": "Enter the Jan 20 time trial",
+    "desc": "Every pace in the plan just updated."
+   },
+   {
+    "key": "double_digits",
+    "name": "Double Digits",
+    "unlock": "First 10-mile run",
+    "desc": "Ten."
+   },
+   {
+    "key": "bricks",
+    "name": "Kiss the Bricks",
+    "unlock": "Indy Mini complete",
+    "desc": "13.1, lap of the Speedway."
+   },
+   {
+    "key": "two_medicine",
+    "name": "Two Medicine",
+    "unlock": "Glacier Half complete",
+    "desc": "Five miles up. Then down past the lake."
+   },
+   {
+    "key": "depreciated",
+    "name": "Fully Depreciated",
+    "unlock": "400 miles on one pair of shoes",
+    "desc": "Asset retired. Buy new ones."
+   },
+   {
+    "key": "the_twenty",
+    "name": "The Twenty",
+    "unlock": "20-mile run complete",
+    "desc": "The most important run of the year. Done."
+   },
+   {
+    "key": "monumental",
+    "name": "Monumental",
+    "unlock": "Marathon complete",
+    "desc": "26.2. A year ago, 5K."
+   },
+   {
+    "key": "ironman_1",
+    "name": "2031",
+    "unlock": "First swim logged",
+    "desc": "The Ironman started today. Nobody noticed. You did."
+   }
+  ],
+  "labels": {
+   "weekly_summary": "Budget vs. Actual",
+   "monthly_summary": "Close the Month",
+   "shoe_tracker": "Accumulated Depreciation",
+   "add_weight_button": "Scale it",
+   "ten_minute_rule": "Decided to keep going",
+   "settings_pace_section": "The Number",
+   "stats_page": "Soft hands. Hard data.",
+   "long_term": "2031 \u00b7 Ironman (with a friend). Not in this plan. In the next one."
+  },
+  "places": [
+   "Briscoe 507A",
+   "McNutt",
+   "SRSC \u2014 8 laps = 1 mile",
+   "Law Lane loop",
+   "Stadium loop",
+   "Arboretum",
+   "Griffy Lake",
+   "Section E",
+   "B&O Trail",
+   "Cousin's rack",
+   "Two Medicine Lake",
+   "Glacier Park Lodge lawn",
+   "Indiana State House",
+   "Memorial Stadium"
+  ],
+  "do_not_use": "No references to family losses, relationships, finances, or body weight. Keep it to running, lifting, school, Brownsburg, the car, pickleball, DECA, and his own words."
+ },
+ "app_copy": {
+  "empty_today": "Nothing scheduled. Habits still count.",
+  "all_done": "Day closed. Budget met.",
+  "streak_broken": "Streak reset. Tomorrow's a new day. You said it first.",
+  "pace_unset": "No 5K time yet. Every run is 'talk test' until Jan 20.",
+  "india": "India. Walk. Sleep. Eat. The plan is waiting.",
+  "race_day": "Race day. You practiced everything. Trust it.",
+  "taper": "Heavy legs and nerves are the taper working. Don't add miles.",
+  "offline": "Pacer works offline. Check things off; it'll keep."
+ }
+}
