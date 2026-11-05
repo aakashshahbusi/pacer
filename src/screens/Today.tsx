@@ -6,6 +6,7 @@ import { diffDays, formatLong } from '../lib/dates'
 import { nextRace, shortRaceName } from '../lib/selectors'
 import { useStore } from '../store/store'
 import { SessionCard } from '../components/SessionCard'
+import { PaceLine } from '../components/PaceLine'
 import { Button, Card, Muted } from '../components/ui'
 import { Icon } from '../components/Icon'
 import { navigate, type Route } from '../lib/route'
@@ -105,7 +106,7 @@ export default function Today({ route }: { route: Route }) {
       {/* Sessions */}
       <div className="space-y-3">
         {visibleSessions.map((s) => (
-          <SessionCard key={s.id} day={day} session={s} />
+          <SessionCard key={s.id} day={day} session={s} body={s.kind === 'run' || s.kind === 'race' ? <PaceLine session={s} /> : undefined} />
         ))}
         {visibleSessions.length === 0 && (
           <Card>

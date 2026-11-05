@@ -1,4 +1,5 @@
 import React from 'react'
+import { Icon } from './Icon'
 
 type DivProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -81,9 +82,14 @@ export function Muted({ children, className = '' }: { children: React.ReactNode;
   return <p className={`text-muted text-[15px] ${className}`}>{children}</p>
 }
 
-export function Screen({ title, subtitle, children, right }: { title: string; subtitle?: string; right?: React.ReactNode; children: React.ReactNode }) {
+export function Screen({ title, subtitle, children, right, back }: { title: string; subtitle?: string; right?: React.ReactNode; back?: () => void; children: React.ReactNode }) {
   return (
     <div className="px-4 pb-6 fade-in">
+      {back && (
+        <button onClick={back} className="mt-3 -ml-1 flex items-center gap-1 text-[15px] font-semibold text-muted">
+          <Icon name="back" size={18} /> More
+        </button>
+      )}
       <header className="pt-3 pb-4 flex items-end justify-between gap-3">
         <div>
           <h1 className="text-[28px] font-bold leading-tight tracking-tight">{title}</h1>

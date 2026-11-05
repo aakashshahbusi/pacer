@@ -4,6 +4,7 @@ import { TabBar } from './components/TabBar'
 import { useStore } from './store/store'
 import { Screen, Muted } from './components/ui'
 import Today from './screens/Today'
+import More from './screens/More'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -30,7 +31,7 @@ export default function App() {
     case 'plan': body = <Placeholder title="Plan" />; break
     case 'lifts': body = <Placeholder title="Lifts" />; break
     case 'stats': body = <Placeholder title="Soft hands. Hard data." />; break
-    default: body = <Placeholder title="More" />
+    default: body = <More route={route} />
   }
 
   return (
